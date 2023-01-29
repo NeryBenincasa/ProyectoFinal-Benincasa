@@ -1,0 +1,64 @@
+body{
+    background-color: $color-fondo;
+}
+
+.total{
+    color: $color-titulares;
+}
+
+.card{
+    background-color: $color-card;
+    border: solid 2px black;
+}
+
+.btn{
+    background-color: $color-button;
+
+}
+header {
+    display: block;
+    position: relative;
+    z-index: 1000 ;
+}
+
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.areatexto{
+    margin-top: 45px;
+}
+
+.btn-form-contact{
+    margin: 10px;
+}
+
+.mapa{
+    margin-bottom: 50px;
+}
+.mapa iframe {
+    margin-top: 1%;
+    width: 500px;
+    height: 500px;
+    border: solid;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.carousel{
+    margin-bottom: 55px;
+    margin-top: 55px;
+}
+
+.navbar2{
+    margin-bottom: 30px;
+}
+
+
+.altura{
+    height: 400px;
+}
+
+.colorFondo{
+    background-color: rgba(0, 0, 0, 0.05);
+}
