@@ -60,11 +60,29 @@
                         <li class="nav-item">
                             <a class="nav-link" href="pages/encontranos.html">Encontranos</a>
                         </li>
+                        <a href="#" class="cart-icon" id="open-cart" onclick="toggleCart()">
+                            <img src="/assets/img/icono-carrito.png" width="50px" height="50px" alt="Carrito de compras">
+                        </a>
                     </ul>
 
                 </div>
             </nav>
         </header>
+
+      
+
+
+        <!-- Muestra el carrito de compras en una ventana emergente -->
+        <div id="cart-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Carrito de compras</h2>
+                <ul id="cart-items">
+                </ul>
+                <p>Total: $<span id="cart-total">0</span></p>
+                <button id="checkout">Finalizar compra</button>
+            </div>
+        </div>
 
         <!-- CARROUSEL -->
         <div id="carouselExampleIndicators" class="carousel slide">
@@ -127,6 +145,7 @@
             </nav>
         </div>
 
+
         <!-- SECCION ARTICULOS -->
         <div class="container">
             <section class="text-center mb-4">
@@ -137,8 +156,10 @@
                                 alt="remera amarilla">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 1</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$5000</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera pato amarillo"
+                                    data-price="5000">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -148,8 +169,10 @@
                                 alt="remera negra patos">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 2</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$6500</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera pato negra"
+                                    data-price="6500">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -159,8 +182,10 @@
                                 alt="remera blanca helado">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 3</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$2200</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera helado blanco"
+                                    data-price="2200">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -172,8 +197,10 @@
                                 alt="remera amarilla">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 4</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$3400</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera pato blanco"
+                                    data-price="3400">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -183,8 +210,10 @@
                                 alt="remera negra patos">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 5</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$6666</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera 5"
+                                    data-price="6666">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -194,8 +223,10 @@
                                 alt="remera blanca helado">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 6</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$5560</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera pato 6"
+                                    data-price="5560">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -207,8 +238,10 @@
                                 alt="remera amarilla">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 7</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$1974</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera pato 7"
+                                    data-price="1974">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -218,8 +251,10 @@
                                 alt="remera negra patos">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 8</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$1982</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera pato 8"
+                                    data-price="1982">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -229,8 +264,10 @@
                                 alt="remera blanca helado">
                             <div class="card-body">
                                 <h5 class="card-title">Remera 9</h5>
-                                <h6>$$$$$</h6>
-                                <a href="#" class="btn btn-dark">Añadir al carrito</a>
+                                <h6>$2013</h6>
+                                <a href="#" class="btn btn-dark add-to-cart" data-name="Remera helado 9"
+                                    data-price="2013">Añadir al
+                                    carrito</a>
                             </div>
                         </div>
                     </div>
@@ -330,6 +367,8 @@
 
 
         <!-- SCRIPT -->
+        <script src="script.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
             </script>
