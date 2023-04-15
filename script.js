@@ -1,10 +1,45 @@
+
 // Define el arreglo de los productos en el carrito
 let cartItems = [];
 
 // Función para agregar productos al carrito
 function addItemToCart(item) {
-  cartItems.push(item);
+  // Busca si el producto ya está en el carrito
+  const existingItem = cartItems.find(cartItem => cartItem.name === item.name);
+  
+  if (existingItem) {
+    // Si el producto ya está en el carrito, incrementa la cantidad
+    existingItem.quantity++;
+  } else {
+    // Si el producto no está en el carrito, agrega el producto con cantidad 1
+    cartItems.push({...item, quantity: 1});
+  }
+  
+  // Agrega eventos de click a los botones de suma y resta
+  const addButtons = document.querySelectorAll('.add-item');
+  const subtractButtons = document.querySelectorAll('.subtract-item');
+  
+  addButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const itemName = button.getAttribute('data-name');
+      const cartItem = cartItems.find(item => item.name === itemName);
+      cartItem.quantity++;
+      displayCartItems();
+    });
+  });
+  
+  subtractButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const itemName = button.getAttribute('data-name');
+      const cartItem = cartItems.find(item => item.name === itemName);
+      if (cartItem.quantity > 1) {
+        cartItem.quantity--;
+      }
+      displayCartItems();
+    });
+  });
 }
+
 
 // Función para mostrar los productos en el carrito
 function displayCartItems() {
@@ -20,16 +55,56 @@ function displayCartItems() {
     // Agrega cada producto al carrito como un elemento de lista
     const li = document.createElement('li');
     li.innerText = `${item.name} - Precio: $${item.price}`;
+    
+    // Agrega botones para sumar y restar
+    const addButton = document.createElement('button');
+    addButton.innerText = '+';
+    addButton.addEventListener('click', () => {
+      addOne(item);
+      displayCartItems();
+    });
+    li.appendChild(addButton);
+    
+    const removeButton = document.createElement('button');
+    removeButton.innerText = '-';
+    removeButton.addEventListener('click', () => {
+      removeOne(item);
+      displayCartItems();
+    });
+    li.appendChild(removeButton);
+    
+    // Agrega la cantidad del producto al carrito
+    const quantitySpan = document.createElement('span');
+    quantitySpan.innerText = item.quantity;
+    li.appendChild(quantitySpan);
+    
     cartItemsList.appendChild(li);
     
     // Suma el precio del producto al total
-    total += item.price;
+    total += item.price * item.quantity;
   });
   
   // Actualiza el precio total
   const cartTotal = document.getElementById('cart-total');
   cartTotal.innerText = total;
 }
+
+// Función para agregar una unidad de un producto al carrito
+function addOne(item) {
+  const index = cartItems.indexOf(item);
+  cartItems[index].quantity += 1;
+}
+
+// Función para remover una unidad de un producto del carrito
+function removeOne(item) {
+  const index = cartItems.indexOf(item);
+  if (cartItems[index].quantity > 1) {
+    cartItems[index].quantity -= 1;
+  } else {
+    cartItems.splice(index, 1);
+  }
+}
+
 
 // Selecciona el botón "Agregar al carrito" de cada artículo
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
@@ -51,7 +126,7 @@ addToCartButtons.forEach(button => {
     addItemToCart(item);
     
     // Muestra un mensaje de confirmación
-    alert(`Se ha agregado ${itemName} al carrito`);
+    Swal.fire(`Se ha agregado ${itemName} al carrito`)
   });
 });
 
@@ -86,7 +161,7 @@ checkoutButton.addEventListener('click', () => {
   // Vacia el contenido del carrito y muestra un mensaje de confirmación
   cartItems = [];
   displayCartItems();
-  alert('¡Gracias por su compra!');
+  Swal.fire('Gracias por su compra :)');
 });
 
 
